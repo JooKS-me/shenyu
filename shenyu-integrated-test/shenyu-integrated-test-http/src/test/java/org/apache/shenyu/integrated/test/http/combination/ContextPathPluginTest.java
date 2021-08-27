@@ -21,10 +21,12 @@ import org.apache.shenyu.common.dto.ConditionData;
 import org.apache.shenyu.common.dto.convert.rule.impl.ContextMappingHandle;
 import org.apache.shenyu.common.enums.OperatorEnum;
 import org.apache.shenyu.common.enums.ParamTypeEnum;
+import org.apache.shenyu.common.enums.PluginEnum;
 import org.apache.shenyu.common.utils.JsonUtils;
 import org.apache.shenyu.integratedtest.common.dto.OrderDTO;
 import org.apache.shenyu.integratedtest.common.helper.HttpHelper;
 import org.apache.shenyu.web.controller.PluginController;
+import org.hamcrest.CoreMatchers;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -39,22 +41,47 @@ import static org.junit.Assert.assertThat;
 public final class ContextPathPluginTest extends AbstractPluginDataInit {
 
     @BeforeClass
-    public static void setup() {
-        initSelectorAndRule()
+    public static void setup() throws IOException {
+        final String selectorHandler = "[{\"upstreamHost\":\"127.0.0.1\",\"upstreamUrl\":\"127.0.0.1:8189\",\"protocol\":\"http://\",\"weight\":50,\"timestamp\":0,\"warmup\":0,\"status\":true}]";
+        String selectorAndRulesResultForDivide = initSelectorAndRules(PluginEnum.DIVIDE.getName(), selectorHandler, buildSelectorConditionListForDivide(), buildRuleLocalDataListForDivide());
+        assertThat(selectorAndRulesResultForDivide, is("success"));
+        String selectorAndRulesResultForContextPath = initSelectorAndRules(PluginEnum.CONTEXT_PATH.getName(), "", buildSelectorConditionListForContextPath(), buildRuleLocalDataListForContextPath());
+        assertThat(selectorAndRulesResultForContextPath, is("success"));
     }
 
     @Test
     public void test() throws IOException {
         OrderDTO user = new OrderDTO("123", "Tom");
-        user = HttpHelper.INSTANCE.postGateway("/http/order/save", user, OrderDTO.class);
+        user = HttpHelper.INSTANCE.postGateway("/test/order/save", user, OrderDTO.class);
         assertThat(user.getName(), is("hello world save order"));
 
-        Map<String, Object> response = HttpHelper.INSTANCE.getFromGateway("/http/order/findById?id=1001", Map.class);
+        Map<String, Object> response = HttpHelper.INSTANCE.getFromGateway("/test/order/findById?id=1001", Map.class);
         assertThat(response.get("error"), is("Not Found"));
         assertThat(response.get("path"), is("/error/order/findById"));
     }
 
-    private static List<ConditionData> buildSelectorConditionList() {
+    private static List<ConditionData> buildSelectorConditionListForDivide() {
+        ConditionData conditionData = new ConditionData();
+        conditionData.setParamType(ParamTypeEnum.URI.getName());
+        conditionData.setOperator(OperatorEnum.MATCH.getAlias());
+        conditionData.setParamValue("/test/order/**");
+        return Collections.singletonList(conditionData);
+    }
+
+    private static List<PluginController.RuleLocalData> buildRuleLocalDataListForDivide() {
+        PluginController.RuleLocalData ruleLocalData = new PluginController.RuleLocalData();
+        ContextMappingHandle handle = new ContextMappingHandle();
+        handle.setContextPath("/http");
+        handle.setAddPrefix("/error");
+        ruleLocalData.setRuleHandler(JsonUtils.toJson(handle));
+        ConditionData conditionData = new ConditionData();
+        conditionData.setParamType(ParamTypeEnum.URI.getName());
+        conditionData.setOperator(OperatorEnum.EQ.getAlias());
+        conditionData.setParamValue("/http/order/findById");
+        return Collections.singletonList(ruleLocalData);
+    }
+
+    private static List<ConditionData> buildSelectorConditionListForContextPath() {
         ConditionData conditionData = new ConditionData();
         conditionData.setParamName(ParamTypeEnum.URI.getName());
         conditionData.setOperator(OperatorEnum.EQ.getAlias());
@@ -62,7 +89,7 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
         return Collections.singletonList(conditionData);
     }
 
-    private static List<PluginController.RuleLocalData> buildRuleLocalDataList() {
+    private static List<PluginController.RuleLocalData> buildRuleLocalDataListForContextPath() {
         PluginController.RuleLocalData ruleLocalData = new PluginController.RuleLocalData();
         ContextMappingHandle handle = new ContextMappingHandle();
         handle.setContextPath("/http");
