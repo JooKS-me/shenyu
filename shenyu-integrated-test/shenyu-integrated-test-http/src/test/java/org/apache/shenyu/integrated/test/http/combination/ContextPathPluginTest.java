@@ -19,6 +19,7 @@ package org.apache.shenyu.integrated.test.http.combination;
 
 import org.apache.shenyu.common.dto.ConditionData;
 import org.apache.shenyu.common.dto.convert.rule.impl.ContextMappingHandle;
+import org.apache.shenyu.common.dto.convert.rule.impl.DivideRuleHandle;
 import org.apache.shenyu.common.enums.OperatorEnum;
 import org.apache.shenyu.common.enums.ParamTypeEnum;
 import org.apache.shenyu.common.enums.PluginEnum;
@@ -26,11 +27,11 @@ import org.apache.shenyu.common.utils.JsonUtils;
 import org.apache.shenyu.integratedtest.common.dto.OrderDTO;
 import org.apache.shenyu.integratedtest.common.helper.HttpHelper;
 import org.apache.shenyu.web.controller.PluginController;
-import org.hamcrest.CoreMatchers;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +63,7 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
 
     private static List<ConditionData> buildSelectorConditionListForDivide() {
         ConditionData conditionData = new ConditionData();
+        conditionData.setParamName("/test/order");
         conditionData.setParamType(ParamTypeEnum.URI.getName());
         conditionData.setOperator(OperatorEnum.MATCH.getAlias());
         conditionData.setParamValue("/test/order/**");
@@ -69,16 +71,24 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
     }
 
     private static List<PluginController.RuleLocalData> buildRuleLocalDataListForDivide() {
+        List<PluginController.RuleLocalData> ruleLocalDataList = new ArrayList<>();
+        ruleLocalDataList.add(buildRuleLocalDataForDivide("/test/order/findById"));
+        ruleLocalDataList.add(buildRuleLocalDataForDivide("/test/order/save"));
+        return ruleLocalDataList;
+    }
+
+    private static PluginController.RuleLocalData buildRuleLocalDataForDivide(final String paramValue) {
         PluginController.RuleLocalData ruleLocalData = new PluginController.RuleLocalData();
-        ContextMappingHandle handle = new ContextMappingHandle();
-        handle.setContextPath("/http");
-        handle.setAddPrefix("/error");
+        DivideRuleHandle handle = new DivideRuleHandle();
+        handle.setRetry(0);
+        handle.setLoadBalance("random");
         ruleLocalData.setRuleHandler(JsonUtils.toJson(handle));
         ConditionData conditionData = new ConditionData();
         conditionData.setParamType(ParamTypeEnum.URI.getName());
         conditionData.setOperator(OperatorEnum.EQ.getAlias());
-        conditionData.setParamValue("/http/order/findById");
-        return Collections.singletonList(ruleLocalData);
+        conditionData.setParamValue(paramValue);
+        ruleLocalData.setConditionDataList(Collections.singletonList(conditionData));
+        return ruleLocalData;
     }
 
     private static List<ConditionData> buildSelectorConditionListForContextPath() {
@@ -90,15 +100,22 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
     }
 
     private static List<PluginController.RuleLocalData> buildRuleLocalDataListForContextPath() {
+        List<PluginController.RuleLocalData> ruleLocalDataList = new ArrayList<>();
+        ruleLocalDataList.add(buildRuleLocalDataForContextPath("/test", "error", "/test/order/findById"));
+        ruleLocalDataList.add(buildRuleLocalDataForContextPath("/test", "", "/test/order/save"));
+        return ruleLocalDataList;
+    }
+
+    private static PluginController.RuleLocalData buildRuleLocalDataForContextPath(final String contextPath, final String addPrefix, final String paramValue) {
         PluginController.RuleLocalData ruleLocalData = new PluginController.RuleLocalData();
         ContextMappingHandle handle = new ContextMappingHandle();
-        handle.setContextPath("/http");
-        handle.setAddPrefix("/error");
+        handle.setContextPath(contextPath);
+        handle.setAddPrefix(addPrefix);
         ruleLocalData.setRuleHandler(JsonUtils.toJson(handle));
         ConditionData conditionData = new ConditionData();
         conditionData.setParamType(ParamTypeEnum.URI.getName());
         conditionData.setOperator(OperatorEnum.EQ.getAlias());
-        conditionData.setParamValue("/http/order/findById");
-        return Collections.singletonList(ruleLocalData);
+        conditionData.setParamValue(paramValue);
+        return ruleLocalData;
     }
 }
