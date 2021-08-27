@@ -103,10 +103,24 @@ public class AbstractPluginDataInit extends AbstractTest {
         return HttpHelper.INSTANCE.getFromGateway("/shenyu/cleanPlugin?name=" + pluginName, String.class);
     }
 
+    /**
+     * Find selector list by pluginName.
+     *
+     * @param pluginName the name of plugin
+     * @return the string
+     * @throws IOException the is exception
+     */
     public static List<SelectorData> findListSelectorByPluginName(final String pluginName) throws IOException {
         return HttpHelper.INSTANCE.getFromGateway("/shenyu/plugin/selector/findList?pluginName=" + pluginName, SelectorData.class);
     }
 
+    /**
+     * Delete selector by pluginName and id of selector.
+     * @param pluginName the name of selector
+     * @param id the id of selector
+     * @return the string
+     * @throws IOException the io exception
+     */
     public static String deleteSelector(final String pluginName, final String id) throws IOException {
         return HttpHelper.INSTANCE.getFromGateway("/shenyu/plugin/selector/delete?pluginName=" + pluginName + "&id=" + id, String.class);
     }
