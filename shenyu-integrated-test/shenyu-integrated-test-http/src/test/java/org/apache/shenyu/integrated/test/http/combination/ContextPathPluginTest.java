@@ -18,7 +18,6 @@
 package org.apache.shenyu.integrated.test.http.combination;
 
 import org.apache.shenyu.common.dto.ConditionData;
-import org.apache.shenyu.common.dto.SelectorData;
 import org.apache.shenyu.common.dto.convert.rule.impl.ContextMappingHandle;
 import org.apache.shenyu.common.dto.convert.rule.impl.DivideRuleHandle;
 import org.apache.shenyu.common.enums.OperatorEnum;
@@ -28,7 +27,6 @@ import org.apache.shenyu.common.utils.JsonUtils;
 import org.apache.shenyu.integratedtest.common.dto.OrderDTO;
 import org.apache.shenyu.integratedtest.common.helper.HttpHelper;
 import org.apache.shenyu.web.controller.PluginController;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -37,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -122,20 +119,20 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
         return ruleLocalData;
     }
 
-    @AfterClass
-    public static void clean() throws IOException {
-        List<SelectorData> selectorDataList = findListSelectorByPluginName("divide");
-        List<SelectorData> selectorDataForDivide = selectorDataList.stream().filter(selectorData -> "/test/order".equals(selectorData.getName())).collect(Collectors.toList());
-        assertThat(selectorDataForDivide.size(), is(1));
-        String selectorIdForDivide = selectorDataForDivide.get(0).getId();
-        String message = deleteSelector("divide", selectorIdForDivide);
-        assertThat(message, is("success"));
-
-        selectorDataList = findListSelectorByPluginName("context_path");
-        List<SelectorData> selectorDataForContextPath = selectorDataList.stream().filter(selectorData -> "/test/order".equals(selectorData.getName())).collect(Collectors.toList());
-        assertThat(selectorDataForContextPath.size(), is(1));
-        String selectorIdForContextPath = selectorDataForContextPath.get(0).getId();
-        message = deleteSelector("context_path", selectorIdForContextPath);
-        assertThat(message, is("success"));
-    }
+//    @AfterClass
+//    public static void clean() throws IOException {
+//        List<SelectorData> selectorDataList = findListSelectorByPluginName("divide");
+//        List<SelectorData> selectorDataForDivide = selectorDataList.stream().filter(selectorData -> "/test/order".equals(selectorData.getName())).collect(Collectors.toList());
+//        assertThat(selectorDataForDivide.size(), is(1));
+//        String selectorIdForDivide = selectorDataForDivide.get(0).getId();
+//        String message = deleteSelector("divide", selectorIdForDivide);
+//        assertThat(message, is("success"));
+//
+//        selectorDataList = findListSelectorByPluginName("context_path");
+//        List<SelectorData> selectorDataForContextPath = selectorDataList.stream().filter(selectorData -> "/test/order".equals(selectorData.getName())).collect(Collectors.toList());
+//        assertThat(selectorDataForContextPath.size(), is(1));
+//        String selectorIdForContextPath = selectorDataForContextPath.get(0).getId();
+//        message = deleteSelector("context_path", selectorIdForContextPath);
+//        assertThat(message, is("success"));
+//    }
 }
