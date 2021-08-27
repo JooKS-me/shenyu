@@ -19,6 +19,7 @@ package org.apache.shenyu.integrated.test.http.combination;
 
 import org.apache.shenyu.common.dto.ConditionData;
 import org.apache.shenyu.common.dto.PluginData;
+import org.apache.shenyu.common.dto.SelectorData;
 import org.apache.shenyu.integratedtest.common.AbstractTest;
 import org.apache.shenyu.integratedtest.common.helper.HttpHelper;
 import org.apache.shenyu.web.controller.PluginController.RuleLocalData;
@@ -100,5 +101,13 @@ public class AbstractPluginDataInit extends AbstractTest {
      */
     public static String cleanPluginData(final String pluginName) throws IOException {
         return HttpHelper.INSTANCE.getFromGateway("/shenyu/cleanPlugin?name=" + pluginName, String.class);
+    }
+
+    public static List<SelectorData> findListSelectorByPluginName(final String pluginName) throws IOException {
+        return HttpHelper.INSTANCE.getFromGateway("/shenyu/plugin/selector/findList?pluginName=" + pluginName, SelectorData.class);
+    }
+
+    public static String deleteSelector(final String pluginName, final String id) throws IOException {
+        return HttpHelper.INSTANCE.getFromGateway("/shenyu/plugin/selector/delete?pluginName=" + pluginName + "&id=" + id, String.class);
     }
 }
