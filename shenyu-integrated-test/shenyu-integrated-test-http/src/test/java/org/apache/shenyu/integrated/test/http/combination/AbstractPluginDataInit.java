@@ -25,6 +25,8 @@ import org.apache.shenyu.integratedtest.common.helper.HttpHelper;
 import org.apache.shenyu.web.controller.PluginController.RuleLocalData;
 import org.apache.shenyu.web.controller.PluginController.SelectorRuleData;
 import org.apache.shenyu.web.controller.PluginController.SelectorRulesData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,6 +35,8 @@ import java.util.List;
  * The type Abstract plugin data init.
  */
 public class AbstractPluginDataInit extends AbstractTest {
+
+    private static final Logger LOG = (Logger) LoggerFactory.getLogger(AbstractPluginDataInit.class);
     
     /**
      * Init plugin string.
@@ -87,6 +91,7 @@ public class AbstractPluginDataInit extends AbstractTest {
                                               final List<RuleLocalData> ruleDataList) throws IOException {
         SelectorRulesData selectorRulesData = new SelectorRulesData();
         selectorRulesData.setPluginName(pluginName);
+        selectorRulesData.setSelectorName(selectorName);
         selectorRulesData.setSelectorHandler(selectorHandler);
         selectorRulesData.setConditionDataList(selectorConditionData);
         selectorRulesData.setRuleDataList(ruleDataList);
