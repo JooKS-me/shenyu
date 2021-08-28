@@ -210,6 +210,7 @@ public class PluginController {
                 .conditionList(selectorRulesData.getConditionDataList())
                 .type(SelectorTypeEnum.CUSTOM_FLOW.getCode())
                 .build();
+        LOG.info(selectorData.getName());
         SelectorData result = buildDefaultSelectorData(selectorData);
         subscriber.onSelectorSubscribe(result);
         List<RuleLocalData> ruleDataList = selectorRulesData.getRuleDataList();
