@@ -70,6 +70,28 @@ public class AbstractPluginDataInit extends AbstractTest {
         selectorRulesData.setRuleDataList(ruleDataList);
         return HttpHelper.INSTANCE.postGateway("/shenyu/plugin/selectorAndRules", selectorRulesData, String.class);
     }
+
+    /**
+     * Init selector and rules string with selector name.
+     *
+     * @param pluginName the plugin name
+     * @param selectorName the selector name
+     * @param selectorHandler the selector handler
+     * @param selectorConditionData the selector condition data
+     * @param ruleDataList the rule data list
+     * @return the string
+     * @throws IOException the io exception
+     */
+    public static String initSelectorAndRules(final String pluginName, final String selectorName, final String selectorHandler,
+                                              final List<ConditionData> selectorConditionData,
+                                              final List<RuleLocalData> ruleDataList) throws IOException {
+        SelectorRulesData selectorRulesData = new SelectorRulesData();
+        selectorRulesData.setPluginName(pluginName);
+        selectorRulesData.setSelectorHandler(selectorHandler);
+        selectorRulesData.setConditionDataList(selectorConditionData);
+        selectorRulesData.setRuleDataList(ruleDataList);
+        return HttpHelper.INSTANCE.postGateway("/shenyu/plugin/selectorAndRules", selectorRulesData, String.class);
+    }
     
     /**
      * Init selector and rule string.

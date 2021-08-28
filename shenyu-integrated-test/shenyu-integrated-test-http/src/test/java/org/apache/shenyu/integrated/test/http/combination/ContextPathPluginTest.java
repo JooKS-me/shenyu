@@ -47,9 +47,9 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
     @BeforeClass
     public static void setup() throws IOException {
         final String selectorHandler = "[{\"upstreamHost\":\"127.0.0.1\",\"upstreamUrl\":\"127.0.0.1:8189\",\"protocol\":\"http://\",\"weight\":50,\"timestamp\":0,\"warmup\":0,\"status\":true}]";
-        String selectorAndRulesResultForDivide = initSelectorAndRules(PluginEnum.DIVIDE.getName(), selectorHandler, buildSelectorConditionListForDivide(), buildRuleLocalDataListForDivide());
+        String selectorAndRulesResultForDivide = initSelectorAndRules(PluginEnum.DIVIDE.getName(), "/test/order", selectorHandler, buildSelectorConditionListForDivide(), buildRuleLocalDataListForDivide());
         assertThat(selectorAndRulesResultForDivide, is("success"));
-        String selectorAndRulesResultForContextPath = initSelectorAndRules(PluginEnum.CONTEXT_PATH.getName(), "", buildSelectorConditionListForContextPath(), buildRuleLocalDataListForContextPath());
+        String selectorAndRulesResultForContextPath = initSelectorAndRules(PluginEnum.CONTEXT_PATH.getName(), "/test/order","", buildSelectorConditionListForContextPath(), buildRuleLocalDataListForContextPath());
         assertThat(selectorAndRulesResultForContextPath, is("success"));
     }
 
@@ -66,7 +66,6 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
 
     private static List<ConditionData> buildSelectorConditionListForDivide() {
         ConditionData conditionData = new ConditionData();
-        conditionData.setParamName("/test/order");
         conditionData.setParamType(ParamTypeEnum.URI.getName());
         conditionData.setOperator(OperatorEnum.MATCH.getAlias());
         conditionData.setParamValue("/test/order/**");
@@ -96,9 +95,9 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
 
     private static List<ConditionData> buildSelectorConditionListForContextPath() {
         ConditionData conditionData = new ConditionData();
-        conditionData.setParamName(ParamTypeEnum.URI.getName());
-        conditionData.setOperator(OperatorEnum.EQ.getAlias());
-        conditionData.setParamValue("/http/order/findById");
+        conditionData.setParamType(ParamTypeEnum.URI.getName());
+        conditionData.setOperator(OperatorEnum.MATCH.getAlias());
+        conditionData.setParamValue("/test/order/**");
         return Collections.singletonList(conditionData);
     }
 
