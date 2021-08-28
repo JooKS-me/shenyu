@@ -93,6 +93,7 @@ public final class WafPluginTest extends AbstractPluginDataInit {
     
     @AfterClass
     public static void clean() throws IOException {
+        findListSelectorByPluginName(PluginEnum.WAF.getName());
         cleanPluginData(PluginEnum.WAF.getName());
     }
 }
