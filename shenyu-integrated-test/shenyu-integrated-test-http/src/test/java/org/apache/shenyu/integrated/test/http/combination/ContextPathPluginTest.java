@@ -50,9 +50,9 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
         String selectorAndRulesResultForDivide = initSelectorAndRules(PluginEnum.DIVIDE.getName(),
                 "/test/order", selectorHandler, buildSelectorConditionListForDivide(), buildRuleLocalDataListForDivide());
         assertThat(selectorAndRulesResultForDivide, is("success"));
-//        String selectorAndRulesResultForContextPath = initSelectorAndRules(PluginEnum.CONTEXT_PATH.getName(),
-//                "/test/order", "", buildSelectorConditionListForContextPath(), buildRuleLocalDataListForContextPath());
-//        assertThat(selectorAndRulesResultForContextPath, is("success"));
+        String selectorAndRulesResultForContextPath = initSelectorAndRules(PluginEnum.CONTEXT_PATH.getName(),
+                "/test/order", "", buildSelectorConditionListForContextPath(), buildRuleLocalDataListForContextPath());
+        assertThat(selectorAndRulesResultForContextPath, is("success"));
     }
 
     @Test
@@ -106,7 +106,7 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
     private static List<PluginController.RuleLocalData> buildRuleLocalDataListForContextPath() {
         List<PluginController.RuleLocalData> ruleLocalDataList = new ArrayList<>();
         ruleLocalDataList.add(buildRuleLocalDataForContextPath("/test", "/error", "/test/order/findById"));
-        ruleLocalDataList.add(buildRuleLocalDataForContextPath("/test", "", "/test/order/save"));
+        ruleLocalDataList.add(buildRuleLocalDataForContextPath("/test", null, "/test/order/save"));
         return ruleLocalDataList;
     }
 
