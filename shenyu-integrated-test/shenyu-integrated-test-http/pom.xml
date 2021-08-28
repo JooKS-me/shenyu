@@ -79,6 +79,14 @@
         </dependency>
         <!-- shenyu jwt plugin end-->
 
+        <!-- apache shenyu context_path plugin start-->
+        <dependency>
+            <groupId>org.apache.shenyu</groupId>
+            <artifactId>shenyu-spring-boot-starter-plugin-context-path</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- apache shenyu context_path plugin end-->
+
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>

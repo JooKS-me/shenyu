@@ -47,9 +47,11 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
     @BeforeClass
     public static void setup() throws IOException {
         final String selectorHandler = "[{\"upstreamHost\":\"127.0.0.1\",\"upstreamUrl\":\"127.0.0.1:8189\",\"protocol\":\"http://\",\"weight\":50,\"timestamp\":0,\"warmup\":0,\"status\":true}]";
-        String selectorAndRulesResultForDivide = initSelectorAndRules(PluginEnum.DIVIDE.getName(), "/test/order", selectorHandler, buildSelectorConditionListForDivide(), buildRuleLocalDataListForDivide());
+        String selectorAndRulesResultForDivide = initSelectorAndRules(PluginEnum.DIVIDE.getName(),
+                "/test/order", selectorHandler, buildSelectorConditionListForDivide(), buildRuleLocalDataListForDivide());
         assertThat(selectorAndRulesResultForDivide, is("success"));
-        String selectorAndRulesResultForContextPath = initSelectorAndRules(PluginEnum.CONTEXT_PATH.getName(), "/test/order","", buildSelectorConditionListForContextPath(), buildRuleLocalDataListForContextPath());
+        String selectorAndRulesResultForContextPath = initSelectorAndRules(PluginEnum.CONTEXT_PATH.getName(),
+                "/test/order", "", buildSelectorConditionListForContextPath(), buildRuleLocalDataListForContextPath());
         assertThat(selectorAndRulesResultForContextPath, is("success"));
     }
 
