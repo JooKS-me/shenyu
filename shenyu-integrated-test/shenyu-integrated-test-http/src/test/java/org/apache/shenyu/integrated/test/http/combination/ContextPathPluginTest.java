@@ -46,7 +46,7 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
 
     @BeforeClass
     public static void setup() throws IOException {
-        final String selectorHandler = "[{\"upstreamHost\":\"127.0.0.1\",\"upstreamUrl\":\"127.0.0.1:8189\",\"protocol\":\"http://\",\"weight\":50,\"timestamp\":0,\"warmup\":0,\"status\":true}]";
+        final String selectorHandler = "[{\"upstreamHost\":\"localhost\",\"upstreamUrl\":\"localhost:8189\",\"protocol\":\"http://\",\"weight\":50,\"timestamp\":0,\"warmup\":0,\"status\":true}]";
         String selectorAndRulesResultForDivide = initSelectorAndRules(PluginEnum.DIVIDE.getName(),
                 "/test/order", selectorHandler, buildSelectorConditionListForDivide(), buildRuleLocalDataListForDivide());
         assertThat(selectorAndRulesResultForDivide, is("success"));
@@ -105,7 +105,7 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
 
     private static List<PluginController.RuleLocalData> buildRuleLocalDataListForContextPath() {
         List<PluginController.RuleLocalData> ruleLocalDataList = new ArrayList<>();
-        ruleLocalDataList.add(buildRuleLocalDataForContextPath("/test", "error", "/test/order/findById"));
+        ruleLocalDataList.add(buildRuleLocalDataForContextPath("/test", "/error", "/test/order/findById"));
         ruleLocalDataList.add(buildRuleLocalDataForContextPath("/test", "", "/test/order/save"));
         return ruleLocalDataList;
     }
