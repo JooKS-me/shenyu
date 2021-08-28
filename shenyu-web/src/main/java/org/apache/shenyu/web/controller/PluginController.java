@@ -178,6 +178,7 @@ public class PluginController {
     public Mono<String> selectorAndRule(@RequestBody final SelectorRuleData selectorRuleData) {
         SelectorData selectorData = SelectorData.builder()
                 .pluginName(selectorRuleData.getPluginName())
+                .name(selectorRuleData.getSelectorName())
                 .handle(selectorRuleData.getSelectorHandler())
                 .conditionList(selectorRuleData.getConditionDataList())
                 .type(SelectorTypeEnum.CUSTOM_FLOW.getCode())
@@ -204,6 +205,7 @@ public class PluginController {
     public Mono<String> selectorAndRules(@RequestBody final SelectorRulesData selectorRulesData) {
         SelectorData selectorData = SelectorData.builder()
                 .pluginName(selectorRulesData.getPluginName())
+                .name(selectorRulesData.getSelectorName())
                 .handle(selectorRulesData.getSelectorHandler())
                 .conditionList(selectorRulesData.getConditionDataList())
                 .type(SelectorTypeEnum.CUSTOM_FLOW.getCode())
