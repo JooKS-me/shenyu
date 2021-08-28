@@ -125,18 +125,19 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
 
     @AfterClass
     public static void clean() throws IOException {
-        List<SelectorData> selectorDataList = findListSelectorByPluginName("divide");
-        List<SelectorData> selectorDataForDivide = selectorDataList.stream().filter(selectorData -> "/test/order".equals(selectorData.getName())).collect(Collectors.toList());
-        assertThat(selectorDataForDivide.size(), is(1));
-        String selectorIdForDivide = selectorDataForDivide.get(0).getId();
-        String message = deleteSelector("divide", selectorIdForDivide);
-        assertThat(message, is("success"));
-
+        List<SelectorData> selectorDataList;
         selectorDataList = findListSelectorByPluginName("context_path");
         List<SelectorData> selectorDataForContextPath = selectorDataList.stream().filter(selectorData -> "/test/order".equals(selectorData.getName())).collect(Collectors.toList());
         assertThat(selectorDataForContextPath.size(), is(1));
         String selectorIdForContextPath = selectorDataForContextPath.get(0).getId();
-        message = deleteSelector("context_path", selectorIdForContextPath);
+        String message = deleteSelector("context_path", selectorIdForContextPath);
+        assertThat(message, is("success"));
+
+        selectorDataList = findListSelectorByPluginName("divide");
+        List<SelectorData> selectorDataForDivide = selectorDataList.stream().filter(selectorData -> "/test/order".equals(selectorData.getName())).collect(Collectors.toList());
+        assertThat(selectorDataForDivide.size(), is(1));
+        String selectorIdForDivide = selectorDataForDivide.get(0).getId();
+        message = deleteSelector("divide", selectorIdForDivide);
         assertThat(message, is("success"));
     }
 }
