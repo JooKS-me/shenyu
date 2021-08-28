@@ -57,13 +57,6 @@ public final class ContextPathPluginTest extends AbstractPluginDataInit {
 
     @Test
     public void test() throws IOException {
-        final String selectorHandler = "[{\"upstreamHost\":\"localhost\",\"upstreamUrl\":\"172.18.0.6:8189\",\"protocol\":\"http://\",\"weight\":50,\"timestamp\":0,\"warmup\":0,\"status\":true}]";
-        String selectorAndRulesResultForDivide = initSelectorAndRules(PluginEnum.DIVIDE.getName(),
-                "/test/order", selectorHandler, buildSelectorConditionListForDivide(), buildRuleLocalDataListForDivide());
-        assertThat(selectorAndRulesResultForDivide, is("success"));
-        String selectorAndRulesResultForContextPath = initSelectorAndRules(PluginEnum.CONTEXT_PATH.getName(),
-                "/test/order", "", buildSelectorConditionListForContextPath(), buildRuleLocalDataListForContextPath());
-        assertThat(selectorAndRulesResultForContextPath, is("success"));
         OrderDTO user = new OrderDTO("123", "Tom");
         user = HttpHelper.INSTANCE.postGateway("/test/order/save", user, OrderDTO.class);
         assertThat(user.getName(), is("hello world save order"));
