@@ -53,12 +53,10 @@ public class ZipkinPluginTest extends AbstractPluginDataInit {
     private static final Gson GSON = new Gson();
 
     @BeforeClass
-    public static void setup() throws IOException, InterruptedException {
+    public static void setup() throws IOException {
         OrderDTO user = new OrderDTO("123", "Tom");
         user = HttpHelper.INSTANCE.postGateway("/http/order/save", user, OrderDTO.class);
         assertEquals("hello world save order", user.getName());
-        // Sleep for jaeger to react
-        Thread.sleep(5000);
     }
 
     @Test

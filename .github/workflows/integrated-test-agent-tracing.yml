@@ -20,6 +20,7 @@ on:
   push:
     branches:
       - master
+      - zipkin-it-1
 
 jobs:
   build:
