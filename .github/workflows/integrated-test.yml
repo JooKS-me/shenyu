@@ -20,6 +20,7 @@ on:
   push:
     branches:
       - master
+      - wb-rg-1
 
 jobs:
   build:
