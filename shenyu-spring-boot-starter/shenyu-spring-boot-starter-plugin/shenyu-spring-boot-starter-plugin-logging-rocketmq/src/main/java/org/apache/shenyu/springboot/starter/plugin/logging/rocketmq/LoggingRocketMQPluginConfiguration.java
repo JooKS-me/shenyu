@@ -18,8 +18,8 @@
 package org.apache.shenyu.springboot.starter.plugin.logging.rocketmq;
 
 import org.apache.shenyu.plugin.api.ShenyuPlugin;
-import org.apache.shenyu.plugin.logging.LoggingRocketMQPlugin;
-import org.apache.shenyu.plugin.logging.config.LogCollectConfig;
+import org.apache.shenyu.plugin.rocketmq.LoggingRocketMQPlugin;
+import org.apache.shenyu.plugin.rocketmq.config.LogCollectConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

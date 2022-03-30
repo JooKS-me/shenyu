@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging.body;
+package org.apache.shenyu.plugin.rocketmq.body;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shenyu.common.constant.Constants;
@@ -24,11 +24,11 @@ import org.apache.shenyu.common.utils.DateUtils;
 import org.apache.shenyu.plugin.api.context.ShenyuContext;
 import org.apache.shenyu.plugin.api.result.ShenyuResult;
 import org.apache.shenyu.plugin.api.result.ShenyuResultWrap;
-import org.apache.shenyu.plugin.logging.DefaultLogCollector;
-import org.apache.shenyu.plugin.logging.LogCollector;
-import org.apache.shenyu.plugin.logging.entity.ShenyuRequestLog;
-import org.apache.shenyu.plugin.logging.utils.LogCollectConfigUtils;
-import org.apache.shenyu.plugin.logging.utils.LogCollectUtils;
+import org.apache.shenyu.plugin.rocketmq.DefaultLogCollector;
+import org.apache.shenyu.plugin.rocketmq.LogCollector;
+import org.apache.shenyu.plugin.rocketmq.entity.ShenyuRequestLog;
+import org.apache.shenyu.plugin.rocketmq.utils.LogCollectConfigUtils;
+import org.apache.shenyu.plugin.rocketmq.utils.LogCollectUtils;
 import org.reactivestreams.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +49,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.apache.shenyu.plugin.logging.constant.LoggingConstant.SHENYU_AGENT_TRACE_ID;
+import static org.apache.shenyu.plugin.rocketmq.constant.LoggingConstant.SHENYU_AGENT_TRACE_ID;
 
 /**
  * decorate ServerHttpResponse for read body.

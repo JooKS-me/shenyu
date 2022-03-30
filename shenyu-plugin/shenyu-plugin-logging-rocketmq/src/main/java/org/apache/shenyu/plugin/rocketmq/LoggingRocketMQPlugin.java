@@ -15,20 +15,20 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging;
+package org.apache.shenyu.plugin.rocketmq;
 
 import org.apache.shenyu.common.dto.RuleData;
 import org.apache.shenyu.common.dto.SelectorData;
 import org.apache.shenyu.plugin.api.ShenyuPluginChain;
 import org.apache.shenyu.plugin.base.AbstractShenyuPlugin;
 import org.apache.shenyu.plugin.base.utils.HostAddressUtils;
-import org.apache.shenyu.plugin.logging.body.LoggingServerHttpRequest;
-import org.apache.shenyu.plugin.logging.body.LoggingServerHttpResponse;
-import org.apache.shenyu.plugin.logging.config.LogCollectConfig;
-import org.apache.shenyu.plugin.logging.entity.ShenyuRequestLog;
-import org.apache.shenyu.plugin.logging.rocketmq.RocketMQLogCollectClient;
-import org.apache.shenyu.plugin.logging.utils.LogCollectConfigUtils;
-import org.apache.shenyu.plugin.logging.utils.LogCollectUtils;
+import org.apache.shenyu.plugin.rocketmq.body.LoggingServerHttpRequest;
+import org.apache.shenyu.plugin.rocketmq.body.LoggingServerHttpResponse;
+import org.apache.shenyu.plugin.rocketmq.config.LogCollectConfig;
+import org.apache.shenyu.plugin.rocketmq.entity.ShenyuRequestLog;
+import org.apache.shenyu.plugin.rocketmq.rocketmq.RocketMQLogCollectClient;
+import org.apache.shenyu.plugin.rocketmq.utils.LogCollectConfigUtils;
+import org.apache.shenyu.plugin.rocketmq.utils.LogCollectUtils;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;

@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging.body;
+package org.apache.shenyu.plugin.rocketmq.body;
 
-import org.apache.shenyu.plugin.logging.entity.ShenyuRequestLog;
-import org.apache.shenyu.plugin.logging.utils.LogCollectConfigUtils;
-import org.apache.shenyu.plugin.logging.utils.LogCollectUtils;
+import org.apache.shenyu.plugin.rocketmq.entity.ShenyuRequestLog;
+import org.apache.shenyu.plugin.rocketmq.utils.LogCollectConfigUtils;
+import org.apache.shenyu.plugin.rocketmq.utils.LogCollectUtils;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpRequestDecorator;

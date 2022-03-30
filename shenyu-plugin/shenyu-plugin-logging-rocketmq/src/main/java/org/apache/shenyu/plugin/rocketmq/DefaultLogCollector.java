@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging;
+package org.apache.shenyu.plugin.rocketmq;
 
 import java.util.Objects;
 

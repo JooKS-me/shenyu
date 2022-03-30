@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging.body;
+package org.apache.shenyu.plugin.rocketmq.body;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging.entity;
+package org.apache.shenyu.plugin.rocketmq.entity;
 
 /**
  * shenyu gateway access log.

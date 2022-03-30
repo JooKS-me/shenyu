@@ -19,7 +19,7 @@ package org.apache.shenyu.springboot.starter.plugin.logging.rocketmq;
 
 import org.apache.shenyu.common.enums.PluginEnum;
 import org.apache.shenyu.plugin.api.ShenyuPlugin;
-import org.apache.shenyu.plugin.logging.config.LogCollectConfig;
+import org.apache.shenyu.plugin.rocketmq.config.LogCollectConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.AutoConfigurations;

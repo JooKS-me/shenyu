@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging.utils;
+package org.apache.shenyu.plugin.rocketmq.utils;
 
 import org.apache.shenyu.common.utils.JsonUtils;
 import org.springframework.http.HttpHeaders;

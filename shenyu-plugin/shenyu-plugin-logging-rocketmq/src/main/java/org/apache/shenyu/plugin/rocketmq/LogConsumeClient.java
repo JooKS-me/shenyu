@@ -15,20 +15,25 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging.constant;
+package org.apache.shenyu.plugin.rocketmq;
+
+import org.apache.shenyu.plugin.rocketmq.entity.ShenyuRequestLog;
+
+import java.util.List;
 
 /**
- * Some log related property constants.
+ * Used to collect logs, which can be stored in remote or local files or databases, or others.
  */
-public final class LoggingConstant {
 
-    public static final String TOPIC = "topic";
+public interface LogConsumeClient extends AutoCloseable {
 
-    public static final String NAMESERVER_ADDRESS = "namesrvAddr";
 
-    public static final String PRODUCER_GROUP = "producerGroup";
-
-    public static final String SHENYU_AGENT_TRACE_ID = "shenyu-agent-trace-id";
+    /**
+     * collect logs.
+     *
+     * @param logs list of log
+     * @throws Exception produce exception
+     */
+    void consume(List<ShenyuRequestLog> logs) throws Exception;
 
 }
-

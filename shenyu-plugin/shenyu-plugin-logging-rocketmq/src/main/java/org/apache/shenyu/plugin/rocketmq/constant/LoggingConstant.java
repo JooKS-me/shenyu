@@ -15,24 +15,20 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging.sampler;
-
-import org.springframework.http.server.reactive.ServerHttpRequest;
+package org.apache.shenyu.plugin.rocketmq.constant;
 
 /**
- * sampler interface.
+ * Some log related property constants.
  */
-public interface Sampler {
+public final class LoggingConstant {
 
-    Sampler ALWAYS_SAMPLE = request -> true;
-    Sampler NEVER_SAMPLE = request -> false;
+    public static final String TOPIC = "topic";
 
-    /**
-     * judge a ServerHttpRequest should be sample.
-     *
-     * @param request request
-     * @return whether sample
-     */
-    boolean isSampled(ServerHttpRequest request);
+    public static final String NAMESERVER_ADDRESS = "namesrvAddr";
+
+    public static final String PRODUCER_GROUP = "producerGroup";
+
+    public static final String SHENYU_AGENT_TRACE_ID = "shenyu-agent-trace-id";
 
 }
+

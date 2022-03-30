@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging.config;
+package org.apache.shenyu.plugin.rocketmq.config;
 
 import java.util.Map;
 import java.util.Properties;

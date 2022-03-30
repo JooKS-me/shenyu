@@ -15,25 +15,24 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging;
+package org.apache.shenyu.plugin.rocketmq.sampler;
 
-import org.apache.shenyu.plugin.logging.entity.ShenyuRequestLog;
-
-import java.util.List;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 
 /**
- * Used to collect logs, which can be stored in remote or local files or databases, or others.
+ * sampler interface.
  */
+public interface Sampler {
 
-public interface LogConsumeClient extends AutoCloseable {
-
+    Sampler ALWAYS_SAMPLE = request -> true;
+    Sampler NEVER_SAMPLE = request -> false;
 
     /**
-     * collect logs.
+     * judge a ServerHttpRequest should be sample.
      *
-     * @param logs list of log
-     * @throws Exception produce exception
+     * @param request request
+     * @return whether sample
      */
-    void consume(List<ShenyuRequestLog> logs) throws Exception;
+    boolean isSampled(ServerHttpRequest request);
 
 }

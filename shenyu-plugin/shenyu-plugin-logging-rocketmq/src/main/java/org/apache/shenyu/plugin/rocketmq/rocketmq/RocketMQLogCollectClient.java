@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging.rocketmq;
+package org.apache.shenyu.plugin.rocketmq.rocketmq;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
@@ -23,10 +23,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.shenyu.common.utils.JsonUtils;
-import org.apache.shenyu.plugin.logging.LogConsumeClient;
-import org.apache.shenyu.plugin.logging.constant.LoggingConstant;
-import org.apache.shenyu.plugin.logging.entity.ShenyuRequestLog;
-import org.apache.shenyu.plugin.logging.utils.LogCollectConfigUtils;
+import org.apache.shenyu.plugin.rocketmq.LogConsumeClient;
+import org.apache.shenyu.plugin.rocketmq.constant.LoggingConstant;
+import org.apache.shenyu.plugin.rocketmq.entity.ShenyuRequestLog;
+import org.apache.shenyu.plugin.rocketmq.utils.LogCollectConfigUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

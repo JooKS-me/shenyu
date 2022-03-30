@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging;
+package org.apache.shenyu.plugin.rocketmq;
 
-import org.apache.shenyu.plugin.logging.entity.ShenyuRequestLog;
+import org.apache.shenyu.plugin.rocketmq.entity.ShenyuRequestLog;
 
 /**
  * Collect logs and put into buffer queue.

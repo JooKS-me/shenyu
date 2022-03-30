@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging;
+package org.apache.shenyu.plugin.rocketmq;
 
 import org.apache.shenyu.common.utils.ThreadUtils;
-import org.apache.shenyu.plugin.logging.entity.ShenyuRequestLog;
-import org.apache.shenyu.plugin.logging.utils.LogCollectConfigUtils;
+import org.apache.shenyu.plugin.rocketmq.entity.ShenyuRequestLog;
+import org.apache.shenyu.plugin.rocketmq.utils.LogCollectConfigUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

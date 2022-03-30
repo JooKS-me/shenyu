@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.apache.shenyu.plugin.logging.utils;
+package org.apache.shenyu.plugin.rocketmq.utils;
 
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shenyu.plugin.logging.config.LogCollectConfig;
-import org.apache.shenyu.plugin.logging.sampler.CountSampler;
-import org.apache.shenyu.plugin.logging.sampler.Sampler;
+import org.apache.shenyu.plugin.rocketmq.config.LogCollectConfig;
+import org.apache.shenyu.plugin.rocketmq.sampler.CountSampler;
+import org.apache.shenyu.plugin.rocketmq.sampler.Sampler;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.util.AntPathMatcher;
 
