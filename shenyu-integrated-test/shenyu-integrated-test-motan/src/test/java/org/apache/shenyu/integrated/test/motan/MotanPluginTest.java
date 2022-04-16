@@ -36,7 +36,7 @@ public class MotanPluginTest extends AbstractPluginDataInit {
 
     @BeforeAll
     public static void setup() throws IOException {
-        String pluginResult = initPlugin(PluginEnum.MOTAN.getName(), "{\"register\":\"shenyu-zk:2181\"}");
+        String pluginResult = initPlugin(PluginEnum.MOTAN.getName(), "{\"register\":\"shenyu-zk:2181\",\"corethreads\":0,\"threads\":2147483647,\"queues\":0,\"threadpool\":\"cached\"}");
         assertThat(pluginResult, is("success"));
     }
 
