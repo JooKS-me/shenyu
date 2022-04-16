@@ -20,22 +20,15 @@ on:
   push:
     branches:
       - master
+      - motan-shared-pool
 
 jobs:
   build:
     strategy:
       matrix:
         case:
-          - shenyu-integrated-test-alibaba-dubbo
-          - shenyu-integrated-test-apache-dubbo
           - shenyu-integrated-test-grpc
-          - shenyu-integrated-test-http
-          - shenyu-integrated-test-https
           - shenyu-integrated-test-motan
-          - shenyu-integrated-test-spring-cloud
-          - shenyu-integrated-test-sofa
-          - shenyu-integrated-test-websocket
-          - shenyu-integrated-test-combination
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
