@@ -14,14 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM openjdk:8-jre-alpine
+FROM openjdk:8-jdk-alpine
 
 ARG APP_NAME
 
 ENV LOCAL_PATH /opt/shenyu-admin
 ENV ADMIN_JVM ""
-
-RUN apk --no-cache add procps
 
 ADD target/${APP_NAME}.tar.gz /opt
 RUN mv /opt/${APP_NAME} ${LOCAL_PATH}
